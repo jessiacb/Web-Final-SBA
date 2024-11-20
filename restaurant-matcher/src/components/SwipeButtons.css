@@ -1,0 +1,25 @@
+.swipe-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .like-button,
+  .dislike-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .like-button {
+    background-color: #4caf50; /* Green */
+  }
+  
+  .dislike-button {
+    background-color: #f44336; /* Red */
+  }
+  
