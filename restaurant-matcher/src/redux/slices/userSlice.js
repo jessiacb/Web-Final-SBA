@@ -10,8 +10,12 @@ const userSlice = createSlice({
     dislikeRestaurant: (state, action) => {
       state.swipes.disliked.push(action.payload);
     },
+    resetSwipes: (state) => {
+      state.swipes.liked = [];
+      state.swipes.disliked = [];
+    },
   },
 });
 
-export const { likeRestaurant, dislikeRestaurant } = userSlice.actions;
+export const { likeRestaurant, dislikeRestaurant, resetSwipes } = userSlice.actions;
 export default userSlice.reducer;

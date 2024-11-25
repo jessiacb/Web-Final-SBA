@@ -1,5 +1,4 @@
 import React from 'react';
-import './RestaurantCard.css'; 
 
 const RestaurantCard = ({ name, image, description }) => {
   return (
