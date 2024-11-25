@@ -16,7 +16,7 @@ const SwipePage = () => {
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
-        const data = await getRestaurants('New York'); //eeplace w/ user location if available
+        const data = await getRestaurants('New York'); //replace w/ user location if available
         setRestaurants(data);
       } catch (error) {
         console.error('Error fetching restaurants:', error);
@@ -40,7 +40,7 @@ const SwipePage = () => {
     }
   };
 
-  //check any restaurants left to swipe
+  //check if any restaurants are left to swipe
   if (currentIndex >= restaurants.length) {
     return <div className="no-more-restaurants">No more restaurants to swipe!</div>;
   }
@@ -61,6 +61,28 @@ const SwipePage = () => {
         )}
       </div>
       <SwipeButtons onLike={handleLike} onDislike={handleDislike} />
+
+      {/* Liked Restaurants Section */}
+      <div className="liked-restaurants">
+        <h2>Liked Restaurants</h2>
+        {likedRestaurants.length > 0 ? (
+          <ul>
+            {likedRestaurants.map((restaurant) => (
+              <li key={restaurant.id}>
+                <h3>{restaurant.name}</h3>
+                <p>{restaurant.description || restaurant.categories?.[0]?.title}</p>
+                <img
+                  src={restaurant.image_url}
+                  alt={restaurant.name}
+                  style={{ width: '100px', borderRadius: '5px' }}
+                />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No liked restaurants yet. Start swiping!</p>
+        )}
+      </div>
     </div>
   );
 };
