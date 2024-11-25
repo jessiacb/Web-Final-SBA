@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_KEY = 'YOUR_YELP_API_KEY9Kxj-8zSGIaYV1TR6yQnJ0VG2QIE89m-w5xMKnSnLuBYZTOC6_G-j28QBPGJsH-hl9kToNenU8qi8JTEnfZCq8yYLgimQzGmC__rNkyV_9u1r86w-Reodye0BE8-Z3Yx';
+//use API key from environment variable
+const API_KEY = process.env.REACT_APP_YELP_API_KEY;
 const BASE_URL = 'https://api.yelp.com/v3/businesses';
 
 const api = axios.create({
@@ -10,9 +11,19 @@ const api = axios.create({
   },
 });
 
+//function to fetch restaurants
 export const getRestaurants = async (location) => {
-  const response = await api.get('/search', {
-    params: { location, categories: 'restaurants' },
-  });
-  return response.data.businesses;
+  try {
+    const response = await api.get('/search', {
+      params: {
+        location, // ex. "New York"
+        categories: 'restaurants',
+        limit: 20, //limit number of results
+      },
+    });
+    return response.data.businesses;
+  } catch (error) {
+    console.error('Error fetching data from Yelp API:', error);
+    throw error;
+  }
 };
